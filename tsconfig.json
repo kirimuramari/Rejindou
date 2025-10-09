@@ -4,7 +4,7 @@
     "jsx": "react-jsx",
     "target": "es2020",
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "node16",
     "allowJs": true,
     "outDir": "./dist",
     "esModuleInterop": true,
