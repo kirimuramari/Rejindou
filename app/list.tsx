@@ -1,3 +1,5 @@
+import { supabase } from "@/lib/supabaseClient";
+import { tables } from "@/theme/tables";
 import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -7,7 +9,6 @@ import {
   Text,
   View,
 } from "react-native";
-import { supabase } from "../lib/supabaseClient";
 
 type Item = {
   番号: number;
@@ -79,11 +80,11 @@ export default function List() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>一覧</Text>
-      <View style={styles.headerRow}>
-        <Text style={styles.headerCell}>番号</Text>
-        <Text style={styles.headerCell}>商品名</Text>
-        <Text style={styles.headerCell}>値段</Text>
-        <Text style={styles.headerCell}>シリーズ</Text>
+      <View style={tables.headerRow}>
+        <Text style={tables.headerCell}>番号</Text>
+        <Text style={tables.headerCell}>商品名</Text>
+        <Text style={tables.headerCell}>値段</Text>
+        <Text style={tables.headerCell}>シリーズ</Text>
       </View>
       <FlatList
         data={item}
@@ -92,14 +93,14 @@ export default function List() {
         renderItem={({ item, index }) => (
           <View
             style={[
-              styles.dataRow,
+              tables.dataRow,
               { backgroundColor: index % 2 === 0 ? "#fff" : "#eee" },
             ]}
           >
-            <Text style={[styles.dataCell]}>{item.番号}</Text>
-            <Text style={[styles.dataCell]}>{item.商品名}</Text>
-            <Text style={[styles.dataCell]}>¥{item.値段}</Text>
-            <Text style={[styles.dataCell]}>{item.シリーズ}</Text>
+            <Text style={tables.dataCell}>{item.番号}</Text>
+            <Text style={tables.dataCell}>{item.商品名}</Text>
+            <Text style={tables.dataCell}>¥{item.値段}</Text>
+            <Text style={tables.dataCell}>{item.シリーズ}</Text>
           </View>
         )}
         ListFooterComponent={
@@ -146,29 +147,5 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginTop: 10,
-  },
-  headerRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 10,
-    borderBottomWidth: 1,
-    borderColor: "#ddd",
-    paddingBottom: 5,
-  },
-  headerCell: {
-    flex: 1,
-    fontWeight: "bold",
-  },
-  dataRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 5,
-    paddingVertical: 6,
-    borderBottomWidth: 1,
-    borderColor: "#ddd",
-  },
-  dataCell: {
-    flex: 1,
-    fontSize: 13,
   },
 });
