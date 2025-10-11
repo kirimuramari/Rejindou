@@ -1,13 +1,7 @@
+import { tables } from "@/theme/tables";
 import { Picker } from "@react-native-picker/picker";
 import { useEffect, useState } from "react";
-import {
-  Button,
-  FlatList,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { Button, FlatList, Text, TextInput, View } from "react-native";
 import { supabase } from "../lib/supabaseClient";
 
 export default function SearchScreen() {
@@ -81,11 +75,11 @@ export default function SearchScreen() {
       {searched && (
         <View style={{ marginTop: 20 }}>
           <Text style={{ fontSize: 16 }}>{results.length} 件ありました。</Text>
-          <View style={styles.headerRow}>
-            <Text style={styles.headerRow}>番号</Text>
-            <Text style={styles.headerRow}>商品名</Text>
-            <Text style={styles.headerRow}>値段</Text>
-            <Text style={styles.headerRow}>シリーズ</Text>
+          <View style={tables.headerRow}>
+            <Text style={tables.headerRow}>番号</Text>
+            <Text style={tables.headerRow}>商品名</Text>
+            <Text style={tables.headerRow}>値段</Text>
+            <Text style={tables.headerRow}>シリーズ</Text>
           </View>
           <FlatList
             data={results}
@@ -94,13 +88,16 @@ export default function SearchScreen() {
               `${item.name || "name"}-${item.series || "series"}-${index}`
             }
             renderItem={({ item, index }) => (
-              <View style={[styles.dataRow,
-                {backgroundColor: index % 2 === 0 ? "#fff": "#eee"},]
-              }>
-                <Text style={styles.dataCell}>{item.番号}</Text>
-                <Text style={styles.dataCell}>{item.商品名}</Text>
-                <Text style={styles.dataCell}>¥{item.値段}</Text>
-                <Text style={styles.dataCell}>{item.シリーズ}</Text>
+              <View
+                style={[
+                  tables.dataRow,
+                  { backgroundColor: index % 2 === 0 ? "#fff" : "#eee" },
+                ]}
+              >
+                <Text style={tables.dataCell}>{item.番号}</Text>
+                <Text style={tables.dataCell}>{item.商品名}</Text>
+                <Text style={tables.dataCell}>¥{item.値段}</Text>
+                <Text style={tables.dataCell}>{item.シリーズ}</Text>
               </View>
             )}
           />
@@ -109,28 +106,3 @@ export default function SearchScreen() {
     </View>
   );
 }
-const styles = StyleSheet.create({
-  headerRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 10,
-    borderBottomWidth: 1,
-    borderColor: "#ddd",
-    paddingBottom: 5,
-  },
-  headerCell: {
-    flex: 1,
-    fontWeight: "bold",
-  },
-  dataRow: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 10,
-    borderBottomWidth: 1,
-    borderColor: "#ddd",
-    paddingBottom: 5,
-  },
-  dataCell: {
-    flex: 1,
-  },
-});

@@ -1,3 +1,4 @@
+import { tables } from "@/theme/tables";
 import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -50,22 +51,25 @@ export default function Set_Price() {
       <Text style={styles.title}>データ一覧</Text>
 
       {/* フィールド名の固定表示 */}
-      <View style={styles.headerRow}>
-        <Text style={styles.headerCell}>番号</Text>
-        <Text style={styles.headerCell}>シリーズ</Text>
+      <View style={tables.headerRow}>
+        <Text style={tables.headerCell}>番号</Text>
+        <Text style={tables.headerCell}>シリーズ</Text>
 
-        <Text style={styles.headerCell}>セット価格</Text>
+        <Text style={tables.headerCell}>セット価格</Text>
       </View>
       <FlatList
         data={data}
         keyExtractor={(item) => item.番号.toString()}
-        renderItem={({ item,index }) => (
-          <View style={[styles.dataRow,
-            {backgroundColor: index % 2 === 0 ? "#fff" : "#eee"},
-          ]}>
-            <Text style={styles.dataCell}>{item.番号}</Text>
-            <Text style={styles.dataCell}>{item.シリーズ}</Text>
-            <Text style={styles.dataCell}> ¥{item.セット価格}</Text>
+        renderItem={({ item, index }) => (
+          <View
+            style={[
+              tables.dataRow,
+              { backgroundColor: index % 2 === 0 ? "#fff" : "#eee" },
+            ]}
+          >
+            <Text style={tables.dataCell}>{item.番号}</Text>
+            <Text style={tables.dataCell}>{item.シリーズ}</Text>
+            <Text style={tables.dataCell}> ¥{item.セット価格}</Text>
           </View>
         )}
       />
@@ -82,29 +86,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     marginBottom: 10,
-  },
-  headerRow: {
-    flexDirection: "row",
-    backgroundColor: "#eee",
-    paddingVertical: 8,
-    paddingHorizontal: 5,
-    borderBottomWidth: 1,
-    borderColor: "#ccc",
-  },
-  headerCell: {
-    flex: 1,
-    fontWeight: "bold",
-    fontSize: 14,
-  },
-  dataRow: {
-    flexDirection: "row",
-    paddingVertical: 6,
-    paddingHorizontal: 5,
-    borderBottomWidth: 1,
-    borderColor: "#ddd",
-  },
-  dataCell: {
-    flex: 1,
-    fontSize: 13,
   },
 });

@@ -19,16 +19,33 @@ export const tables = StyleSheet.create({
   headerCell: {
     flex: 1,
     fontWeight: "bold",
+    color: "434656",
+    ...(isDesktop && {
+      fontSize: 18,
+      borderWidth: 1,
+      bordercolor: "#ccc",
+      padding: 8,
+    }),
   },
   dataRow: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 10,
     borderBottomWidth: 1,
     borderColor: "#ddd",
-    paddingBottom: 5,
+    ...(isDesktop && {
+      paddingHorizontal: 10,
+    }),
   },
   dataCell: {
     flex: 1,
+    width: "auto",
+    marginLeft: 20,
+    textAlign: "left",
+    paddingVertical: 6,
+    fontSize: 13,
+    color: "#747575",
+    ...(isDesktop && {
+      fontSize: 16,
+      padding: 8,
+    }),
   },
 });
