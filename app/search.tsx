@@ -1,7 +1,15 @@
+import { formStyle } from "@/theme/formStyle";
 import { tables } from "@/theme/tables";
 import { Picker } from "@react-native-picker/picker";
 import { useEffect, useState } from "react";
-import { Button, FlatList, Text, TextInput, View } from "react-native";
+import {
+  Button,
+  FlatList,
+  ScrollView,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { supabase } from "../lib/supabaseClient";
 
 export default function SearchScreen() {
@@ -48,18 +56,13 @@ export default function SearchScreen() {
     }
   };
   return (
-    <View style={{ flex: 1, padding: 16 }}>
+    <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 16 }}>
       <Text style={{ fontSize: 18, fontWeight: "bold" }}>検索条件</Text>
       <TextInput
         placeholder="名前で検索"
         value={name}
         onChangeText={setName}
-        style={{
-          borderWidth: 1,
-          borderColor: "#ccc",
-          padding: 8,
-          marginVertical: 8,
-        }}
+        style={formStyle.TextInput}
       />
       <Picker
         selectedValue={series}
@@ -76,10 +79,10 @@ export default function SearchScreen() {
         <View style={{ marginTop: 20 }}>
           <Text style={{ fontSize: 16 }}>{results.length} 件ありました。</Text>
           <View style={tables.headerRow}>
-            <Text style={tables.headerRow}>番号</Text>
-            <Text style={tables.headerRow}>商品名</Text>
-            <Text style={tables.headerRow}>値段</Text>
-            <Text style={tables.headerRow}>シリーズ</Text>
+            <Text style={tables.headerCell}>番号</Text>
+            <Text style={tables.headerCell}>商品名</Text>
+            <Text style={tables.headerCell}>値段</Text>
+            <Text style={tables.headerCell}>シリーズ</Text>
           </View>
           <FlatList
             data={results}
@@ -100,9 +103,10 @@ export default function SearchScreen() {
                 <Text style={tables.dataCell}>{item.シリーズ}</Text>
               </View>
             )}
+            scrollEnabled={false}
           />
         </View>
       )}
-    </View>
+    </ScrollView>
   );
 }

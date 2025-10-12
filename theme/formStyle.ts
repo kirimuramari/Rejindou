@@ -26,9 +26,15 @@ export const formStyle = StyleSheet.create({
     justifyContent: "center",
     gap: 20,
   },
+  TextInput: {
+    borderWidth: 1,
+    borderColor: "#fff",
+    padding: 8,
+    marginVertical: 8,
+  },
   button: {
     backgroundColor: "#3b82f6",
-    width: isDesktop ? 140 : "100%",
+    width: isDesktop ? 200 : "100%",
     height: 100,
     borderRadius: 12,
     margin: 10,
