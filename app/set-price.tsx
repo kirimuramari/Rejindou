@@ -1,12 +1,7 @@
+import { formStyle } from "@/theme/formStyle";
 import { tables } from "@/theme/tables";
 import { useEffect, useState } from "react";
-import {
-  ActivityIndicator,
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { ActivityIndicator, FlatList, Text, View } from "react-native";
 import { supabase } from "../lib/supabaseClient";
 
 export default function Set_Price() {
@@ -47,8 +42,8 @@ export default function Set_Price() {
     );
   }
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>データ一覧</Text>
+    <View style={formStyle.container}>
+      <Text style={formStyle.title}>データ一覧</Text>
 
       {/* フィールド名の固定表示 */}
       <View style={tables.headerRow}>
@@ -76,15 +71,3 @@ export default function Set_Price() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-});
