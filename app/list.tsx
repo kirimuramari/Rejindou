@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabaseClient";
+import { formStyle } from "@/theme/formStyle";
 import { tables } from "@/theme/tables";
 import { useEffect, useState } from "react";
 import {
@@ -64,7 +65,7 @@ export default function List() {
 
   if (loading) {
     return (
-      <View style={styles.center}>
+      <View style={formStyle.center}>
         <ActivityIndicator size="large" />
         <Text>読み込み中...</Text>
       </View>
@@ -78,8 +79,8 @@ export default function List() {
     );
   }
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>一覧</Text>
+    <View style={formStyle.container}>
+      <Text style={formStyle.title}>一覧</Text>
       <View style={tables.headerRow}>
         <Text style={tables.headerCell}>番号</Text>
         <Text style={tables.headerCell}>商品名</Text>
@@ -123,25 +124,6 @@ export default function List() {
   );
 }
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-  },
-  center: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
-  item: {
-    padding: 10,
-    borderBottomWidth: 1,
-    borderColor: "#ddd",
-  },
   pagination: {
     flexDirection: "row",
     justifyContent: "space-between",
