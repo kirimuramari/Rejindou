@@ -28,13 +28,14 @@ export const formStyle = StyleSheet.create({
     gap: 20,
   },
   nameSearch: {
+    width: isDesktop ? 200 : "50%",
     padding: 8,
     marginVertical: 8,
   },
   button: {
     backgroundColor: "#3b82f6",
-    width: isDesktop ? "100%" : 26,
-    height: 100,
+    width: isDesktop ? 200 : "50%",
+    height: 50,
     borderRadius: 12,
     margin: 10,
     justifyContent: "center",
