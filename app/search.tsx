@@ -3,11 +3,11 @@ import { tables } from "@/theme/tables";
 import { Picker } from "@react-native-picker/picker";
 import { useEffect, useState } from "react";
 import {
-  Button,
   FlatList,
   ScrollView,
   Text,
   TextInput,
+  TouchableOpacity,
   View,
 } from "react-native";
 import { supabase } from "../lib/supabaseClient";
@@ -74,7 +74,9 @@ export default function SearchScreen() {
           <Picker.Item key={i} label={s} value={s} />
         ))}
       </Picker>
-      <Button title="検索" onPress={handleSearch} />
+      <TouchableOpacity style={formStyle.button} onPress={handleSearch}>
+        <Text style={formStyle.buttonText}>検索</Text>
+      </TouchableOpacity>
       {searched && (
         <View style={{ marginTop: 20 }}>
           <Text style={{ fontSize: 16 }}>{results.length} 件ありました。</Text>
