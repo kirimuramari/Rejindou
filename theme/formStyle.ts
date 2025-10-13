@@ -18,6 +18,7 @@ export const formStyle = StyleSheet.create({
   title: {
     fontSize: isDesktop ? 18 : 20,
     fontWeight: "bold",
+    color: "#747575",
     marginBottom: 10,
   },
   grid: {
@@ -26,15 +27,13 @@ export const formStyle = StyleSheet.create({
     justifyContent: "center",
     gap: 20,
   },
-  TextInput: {
-    borderWidth: 1,
-    borderColor: "#fff",
+  nameSearch: {
     padding: 8,
     marginVertical: 8,
   },
   button: {
     backgroundColor: "#3b82f6",
-    width: isDesktop ? 200 : "100%",
+    width: isDesktop ? "100%" : 26,
     height: 100,
     borderRadius: 12,
     margin: 10,

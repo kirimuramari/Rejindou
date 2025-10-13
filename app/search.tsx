@@ -57,12 +57,12 @@ export default function SearchScreen() {
   };
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1, padding: 16 }}>
-      <Text style={{ fontSize: 18, fontWeight: "bold" }}>検索条件</Text>
+      <Text style={formStyle.title}>検索条件</Text>
       <TextInput
         placeholder="名前で検索"
         value={name}
         onChangeText={setName}
-        style={formStyle.TextInput}
+        style={formStyle.nameSearch}
       />
       <Picker
         selectedValue={series}

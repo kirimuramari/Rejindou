@@ -18,8 +18,9 @@ export const tables = StyleSheet.create({
   },
   headerCell: {
     flex: 1,
-    fontWeight: "bold",
     color: "434656",
+    textAlign: "left",
+
     ...(isDesktop && {
       fontSize: 18,
       borderWidth: 1,
