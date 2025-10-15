@@ -47,4 +47,14 @@ export const formStyle = StyleSheet.create({
     fontSize: isDesktop ? 14 : 16,
     textAlign: "center",
   },
+  indexButton: {
+    backgroundColor: "#3b82f6",
+    width: isDesktop ? 200 : "45%",
+    height: isDesktop ? 200 : "45%",
+    borderRadius: 12,
+    margin: isDesktop ? 0 : 10,
+    justifyContent: "center",
+    alignItems: "center",
+    gap: 8,
+  },
 });
