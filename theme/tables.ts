@@ -7,9 +7,10 @@ export const tables = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 10,
-    borderBottomWidth: 1,
-    borderColor: "#ddd",
+    borderStyle: "solid",
+    borderColor: "#aaa",
     paddingBottom: 5,
+
     ...(isDesktop && {
       paddingHorizontal: 10,
       fontSize: 18,
