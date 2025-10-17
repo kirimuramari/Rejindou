@@ -27,6 +27,11 @@ export const formStyle = StyleSheet.create({
     justifyContent: "center",
     gap: 20,
   },
+  loadingForm: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
   nameSearch: {
     width: isDesktop ? 200 : "50%",
     padding: 8,
