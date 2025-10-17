@@ -28,7 +28,7 @@ export default function Set_Price() {
 
   if (loading) {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <View style={formStyle.loadingForm}>
         <ActivityIndicator size="large" />
         <Text>読み込み中...</Text>
       </View>
