@@ -1,65 +1,13 @@
-import { Dimensions, Platform, StyleSheet } from "react-native";
-
-const isWeb = Platform.OS === "web";
-const isDesktop = isWeb && Dimensions.get("window").width >= 1024;
-
-export const formStyle = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-  },
-  center: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fff",
-    padding: 16,
-  },
-  title: {
-    fontSize: isDesktop ? 18 : 20,
-    fontWeight: "bold",
-    color: "#747575",
-    marginBottom: 10,
-  },
-  grid: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    gap: 20,
-  },
-  loadingForm: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  nameSearch: {
-    width: isDesktop ? 200 : "50%",
-    padding: 8,
-    marginVertical: 8,
-  },
-  button: {
-    backgroundColor: "#3b82f6",
-    width: isDesktop ? 200 : "50%",
-    height: 50,
-    borderRadius: 12,
-    margin: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 8,
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: isDesktop ? 14 : 16,
-    textAlign: "center",
-  },
-  indexButton: {
-    backgroundColor: "#3b82f6",
-    width: isDesktop ? 200 : "45%",
-    height: isDesktop ? 200 : "45%",
-    borderRadius: 12,
-    margin: isDesktop ? 0 : 10,
-    justifyContent: "center",
-    alignItems: "center",
-    gap: 8,
-  },
-});
+export const formStyle = {
+  container: "flex-1 p-5",
+  center: "flex-1 justify-center items-center bg-white p-4",
+  title: "text-[20px] font-bold text-[#747575] mb-2 lg:text-[18px]",
+  grid: "flex flex-row flex-wrap justify-center gap-5",
+  loadingForm: "flex-1 justify-center items-center",
+  nameSearch: "w-1/2 p-2 my-2 lg:w-[200px]",
+  button:
+    "bg-blue-500 w-1/2 h-[50px] rounded-xl m-2 justify-center items-center gap-2 lg:w-[200px]",
+  buttonText: "text-white text-[16px] text-center lg:text-[14px]",
+  indexButton:
+    "bg-blue-500 w-[45%] h-[45%] rounded-xl m-2 justify-center items-center gap-2 lg:(w-[200px] h-[200px] m-0)",
+};
