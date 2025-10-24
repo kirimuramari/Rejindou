@@ -1,8 +1,8 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  darMode: ["class"],
-  content: ["./app/*.{ts,tsx}", "./them/*.{ts.tsx}"],
+  content: ["./app/**/*.{js,jsx,ts,tsx}", "./components/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {},
   },
-  Plugins: [],
+  plugins: [],
 };

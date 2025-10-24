@@ -6,32 +6,32 @@ import { ScrollView, Text, TouchableOpacity, View } from "react-native";
 export default function HomeScreen() {
   return (
     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      <View style={formStyle.container}>
-        <Text style={formStyle.title}>レジン道データベース</Text>
-        <View style={formStyle.grid}>
+      <View className={formStyle.container}>
+        <Text className={formStyle.title}>レジン道データベース</Text>
+        <View className={formStyle.grid}>
           <Link href="/list" asChild>
-            <TouchableOpacity style={formStyle.indexButton}>
+            <TouchableOpacity className={formStyle.indexButton}>
               <FontAwesome5 name="list" size={24} color="#fff" />
-              <Text style={formStyle.buttonText}>一覧</Text>
+              <Text className={formStyle.buttonText}>一覧</Text>
             </TouchableOpacity>
           </Link>
 
           <Link href="/set-price" asChild>
-            <TouchableOpacity style={formStyle.indexButton}>
+            <TouchableOpacity className={formStyle.indexButton}>
               <FontAwesome5 name="tags" size={24} color="#fff" />
-              <Text style={formStyle.buttonText}>セット価格</Text>
+              <Text className={formStyle.buttonText}>セット価格</Text>
             </TouchableOpacity>
           </Link>
           <Link href="/search" asChild>
-            <TouchableOpacity style={formStyle.indexButton}>
+            <TouchableOpacity className={formStyle.indexButton}>
               <FontAwesome5 name="search" size={24} color="#fff" />
-              <Text style={formStyle.buttonText}>検索</Text>
+              <Text className={formStyle.buttonText}>検索</Text>
             </TouchableOpacity>
           </Link>
           <Link href="/purchased" asChild>
-            <TouchableOpacity style={formStyle.indexButton}>
+            <TouchableOpacity className={formStyle.indexButton}>
               <FontAwesome5 name="shopping-cart" size={24} color="#fff" />
-              <Text style={formStyle.buttonText}>購入済み</Text>
+              <Text className={formStyle.buttonText}>購入済み</Text>
             </TouchableOpacity>
           </Link>
         </View>
