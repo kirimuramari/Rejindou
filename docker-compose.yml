@@ -12,7 +12,8 @@ services:
       - WATCHPACKER_POLLING=true
     volumes:
       - .:/app
-   
+      - /app/node_modules
+
     working_dir: /app
     command: npx expo start --web
     stdin_open: true
