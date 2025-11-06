@@ -1,18 +1,11 @@
 import { supabase } from "@/lib/supabaseClient";
+import { Item } from "@/types/types";
 import { Link } from "expo-router";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { Button, Card, DataTable } from "react-native-paper";
 
-type Item = {
-  番号: number;
-  "カラーNo.": number;
-  商品名: string;
-  値段: string;
-  シリーズ: string;
-  備考: string;
-};
 const Page_size = 50;
 
 export default function List() {

@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabaseClient";
+import { Item } from "@/types/types";
 import { Link } from "expo-router";
 import { ArrowLeft } from "lucide-react-native";
 import { useEffect, useState } from "react";
@@ -6,14 +7,6 @@ import { FlatList, ScrollView, Text, View } from "react-native";
 import { Card, DataTable } from "react-native-paper";
 
 export default function Purchased() {
-  interface Item {
-    番号: number;
-    商品名: string;
-    値段: string;
-    シリーズ: string;
-    購入済み: boolean;
-  }
-
   const [data, setData] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {

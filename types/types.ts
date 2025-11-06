@@ -6,4 +6,5 @@ export interface Item {
   シリーズ: string;
   備考: string;
   購入済み: boolean;
+  セット価格: number;
 }

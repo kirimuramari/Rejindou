@@ -1,3 +1,4 @@
+import { Item } from "@/types/types";
 import { Link } from "expo-router";
 import { ArrowLeft } from "lucide-react-native";
 import { useEffect, useState } from "react";
@@ -6,12 +7,7 @@ import { Card, DataTable } from "react-native-paper";
 import { supabase } from "../lib/supabaseClient";
 
 export default function Set_Price() {
-  interface Set_PriceItem {
-    番号: number;
-    シリーズ: string;
-    セット価格: number;
-  }
-  const [data, setData] = useState<Set_PriceItem[]>([]);
+  const [data, setData] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     (async () => {
