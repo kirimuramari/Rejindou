@@ -1,9 +1,8 @@
 import { Link } from "expo-router";
 import { List, Search, ShoppingCart, Tag } from "lucide-react-native";
 import { ScrollView, Text, TouchableOpacity, View } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-
 import { Card } from "react-native-paper";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   const navigationItems = [
