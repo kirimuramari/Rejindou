@@ -129,7 +129,7 @@ export default function SearchScreen() {
             >
               <View className="flex-row items-center space-x-2">
                 <Search className="w-4 h-4" />
-                <Text className="text-base text-foreground">検索</Text>
+                <Text className="text-base text-foreground ">検索</Text>
               </View>
             </Button>
           </View>

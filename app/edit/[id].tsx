@@ -160,7 +160,7 @@ export default function EditPage() {
               <Text>保存</Text>
             </Button>
             <Button
-              mode="outlined"
+              mode="contained"
               onPress={handleCancel}
               className="flex-1 items-center justify-center"
             >
