@@ -5,6 +5,9 @@ on:
     branches:
       - main # メインブランチにpushされたら自動デプロイ
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
