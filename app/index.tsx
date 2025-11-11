@@ -21,8 +21,8 @@ export default function HomeScreen() {
       href: "/set-price",
     },
     {
-      title: "検索",
-      description: "データの検索",
+      title: "検索・編集",
+      description: "データの検索および編集",
       icon: Search,
       href: "/search",
     },

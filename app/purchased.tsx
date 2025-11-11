@@ -4,7 +4,7 @@ import { Item } from "@/types/types";
 import { Link } from "expo-router";
 import { ArrowLeft } from "lucide-react-native";
 import { useEffect, useState } from "react";
-import { FlatList, Text, View } from "react-native";
+import { ScrollView, Text, View } from "react-native";
 import { DataTable, useTheme } from "react-native-paper";
 
 export default function Purchased() {
@@ -49,7 +49,7 @@ export default function Purchased() {
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <View className="border-b border-border/40 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
         <View className="flexgrow">
-          <View className="container mx-auto px-4 py-6">
+          <View className="container mx-auto px-4 py-1.5">
             <View className="flex items-left">
               <Link
                 href="/"
@@ -74,38 +74,36 @@ export default function Purchased() {
         </View>
       </View>
 
-      <ThemedCard>
-        <DataTable className="p-4 border-borer-40 bg-card rounded-xl">
-          <DataTable.Header className="flex-row border-b border-border/30 pb-2 mb-2">
-            <DataTable.Title
-              className="w-[15%] font-semibold text-foreground"
-              textStyle={{ color: colors.onSurface }}
-            >
-              番号
-            </DataTable.Title>
-            <DataTable.Title
-              className="w-[15%] font-semibold text-foreground"
-              textStyle={{ color: colors.onSurface }}
-            >
-              商品名
-            </DataTable.Title>
-            <DataTable.Title
-              className="w-[15%] font-semibold text-foreground"
-              textStyle={{ color: colors.onSurface }}
-            >
-              値段
-            </DataTable.Title>
-            <DataTable.Title
-              className="w-[15%] font-semibold text-foreground"
-              textStyle={{ color: colors.onSurface }}
-            >
-              シリーズ
-            </DataTable.Title>
-          </DataTable.Header>
-          <FlatList
-            data={data}
-            keyExtractor={(item) => item.番号.toString()}
-            renderItem={({ item, index }) => (
+      <ScrollView className="flex-grow">
+        <ThemedCard>
+          <DataTable className="p-4 border-borer-40 bg-card rounded-xl">
+            <DataTable.Header className="flex-row border-b border-border/30 pb-2 mb-2">
+              <DataTable.Title
+                className="w-[15%] font-semibold text-foreground"
+                textStyle={{ color: colors.onSurface }}
+              >
+                番号
+              </DataTable.Title>
+              <DataTable.Title
+                className="w-[15%] font-semibold text-foreground"
+                textStyle={{ color: colors.onSurface }}
+              >
+                商品名
+              </DataTable.Title>
+              <DataTable.Title
+                className="w-[15%] font-semibold text-foreground"
+                textStyle={{ color: colors.onSurface }}
+              >
+                値段
+              </DataTable.Title>
+              <DataTable.Title
+                className="w-[15%] font-semibold text-foreground"
+                textStyle={{ color: colors.onSurface }}
+              >
+                シリーズ
+              </DataTable.Title>
+            </DataTable.Header>
+            {data.map((item, index) => (
               <DataTable.Row
                 key={item.番号}
                 style={{
@@ -144,10 +142,10 @@ export default function Purchased() {
                   {item.シリーズ}
                 </DataTable.Cell>
               </DataTable.Row>
-            )}
-          />
-        </DataTable>
-      </ThemedCard>
+            ))}
+          </DataTable>
+        </ThemedCard>
+      </ScrollView>
     </View>
   );
 }
