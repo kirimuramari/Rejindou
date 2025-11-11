@@ -1,14 +1,19 @@
+import ThemedCard from "@/components/ui/ThemedCard";
+
 import { Item } from "@/types/types";
 import { Link } from "expo-router";
 import { ArrowLeft } from "lucide-react-native";
 import { useEffect, useState } from "react";
-import { FlatList, ScrollView, Text, View } from "react-native";
-import { Card, DataTable } from "react-native-paper";
+import { FlatList, Text, View } from "react-native";
+import { DataTable, useTheme } from "react-native-paper";
 import { supabase } from "../lib/supabaseClient";
 
 export default function Set_Price() {
   const [data, setData] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const { colors, dark } = useTheme();
+
   useEffect(() => {
     (async () => {
       const { data, error } = await supabase
@@ -41,7 +46,7 @@ export default function Set_Price() {
     );
   }
   return (
-    <View className="flex-1 min-h-screen bg-background">
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
       <View className="border-b border-border/40 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
         <View className="flexgrow">
           <View className="container mx-auto px-4 py-6">
@@ -52,10 +57,16 @@ export default function Set_Price() {
               >
                 <ArrowLeft className="w-5 h-5 text-muted-foreground" />
               </Link>
-              <Text className="text-2xl font-bold tracking-tight text-foreground">
+              <Text
+                className="text-2xl font-bold tracking-tight text-foreground"
+                style={{ color: colors.onSurface }}
+              >
                 セット商品一覧
               </Text>
-              <Text className="text-sm text-muted-foreground mt-1">
+              <Text
+                className="text-sm text-muted-foreground mt-1"
+                style={{ color: colors.onSurfaceVariant }}
+              >
                 セット商品のデータを表示
               </Text>
             </View>
@@ -64,48 +75,69 @@ export default function Set_Price() {
       </View>
 
       {/* フィールド名の固定表示 */}
-      <ScrollView className="flexgrow">
-        <Card className="border-border/50 bg-card">
-          <DataTable className="p-4 border-borer-40 bg-card rounded-xl">
-            <DataTable.Header className="flex-row border-b border-border/30 pb-2 mb-2">
-              <DataTable.Title className="w-[15%] font-semibold text-foreground">
-                番号
-              </DataTable.Title>
-              <DataTable.Title className="w-[15%] font-semibold text-foreground">
-                シリーズ
-              </DataTable.Title>
-              <DataTable.Title className="w-[15%] font-semibold text-foreground">
-                セット価格
-              </DataTable.Title>
-            </DataTable.Header>
+      <ThemedCard>
+        <DataTable className="p-4 border-borer-40 bg-card rounded-xl">
+          <DataTable.Header className="flex-row border-b border-border/30 pb-2 mb-2">
+            <DataTable.Title
+              className="w-[15%] font-semibold text-foreground"
+              textStyle={{ color: colors.onSurface }}
+            >
+              番号
+            </DataTable.Title>
+            <DataTable.Title
+              className="w-[15%] font-semibold text-foreground"
+              textStyle={{ color: colors.onSurface }}
+            >
+              シリーズ
+            </DataTable.Title>
+            <DataTable.Title
+              className="w-[15%] font-semibold text-foreground"
+              textStyle={{ color: colors.onSurface }}
+            >
+              セット価格
+            </DataTable.Title>
+          </DataTable.Header>
 
-            <FlatList
-              data={data}
-              keyExtractor={(item) => item.番号.toString()}
-              renderItem={({ item, index }) => (
-                <DataTable.Row
-                  key={item.番号}
-                  style={{
-                    flexDirection: "row",
-                    backgroundColor: index % 2 === 0 ? "#f0f0f0" : "#ffffff",
-                  }}
+          <FlatList
+            data={data}
+            keyExtractor={(item) => item.番号.toString()}
+            renderItem={({ item, index }) => (
+              <DataTable.Row
+                key={item.番号}
+                style={{
+                  flexDirection: "row",
+                  backgroundColor:
+                    index % 2 === 0
+                      ? dark
+                        ? "#2C2C2C"
+                        : "#F9F9F9"
+                      : colors.surface,
+                }}
+              >
+                <DataTable.Cell
+                  className="w-[15%] text-foreground"
+                  textStyle={{ color: colors.onSurface }}
                 >
-                  <DataTable.Cell className="w-[15%] text-foreground">
-                    {item.番号}
-                  </DataTable.Cell>
-                  <DataTable.Cell className="w-[40%] text-muted-foreground">
-                    {item.シリーズ}
-                  </DataTable.Cell>
-                  <DataTable.Cell className="w-[20%] text-muted-foreground">
-                    {" "}
-                    ¥{item.セット価格}
-                  </DataTable.Cell>
-                </DataTable.Row>
-              )}
-            />
-          </DataTable>
-        </Card>
-      </ScrollView>
+                  {item.番号}
+                </DataTable.Cell>
+                <DataTable.Cell
+                  className="w-[40%] text-muted-foreground"
+                  textStyle={{ color: colors.onSurface }}
+                >
+                  {item.シリーズ}
+                </DataTable.Cell>
+                <DataTable.Cell
+                  className="w-[20%] text-muted-foreground"
+                  textStyle={{ color: colors.onSurface }}
+                >
+                  {" "}
+                  ¥{item.セット価格}
+                </DataTable.Cell>
+              </DataTable.Row>
+            )}
+          />
+        </DataTable>
+      </ThemedCard>
     </View>
   );
 }
