@@ -74,7 +74,7 @@ export default function List() {
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <View className="border-b border-border/40 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
         <View className="flexgrow">
-          <View className="container mx-auto px-4 py-6">
+          <View className="container mx-auto px-4 py-1.5">
             <View className="flex items-left">
               <Link
                 href="/"
@@ -173,7 +173,7 @@ export default function List() {
           </DataTable>
         </ThemedCard>
 
-        <View className="mb-6 flex-row justify-between items-center">
+        <View className="mt-6 mb-6 flex-row justify-between items-center">
           <Button
             mode="contained"
             onPress={handlePrev}
@@ -198,12 +198,7 @@ export default function List() {
             buttonColor={colors.primary}
           >
             <ChevronRight className="w-4 h-4" />
-            <Text
-              className="text-sm text-muted-foreground"
-              style={{ color: colors.onSurfaceVariant }}
-            >
-              次のページ
-            </Text>
+            次のページ
           </Button>
         </View>
       </ScrollView>

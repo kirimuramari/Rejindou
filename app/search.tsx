@@ -70,7 +70,7 @@ export default function SearchScreen() {
     >
       <View className="border-b border-border/40 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
         <View className="flex-grow">
-          <View className="container mx-auto px-4 py-6">
+          <View className="container mx-auto px-4 py-1.5">
             <View className="flex items-left space-y-1">
               <Link
                 href="/"
@@ -95,62 +95,6 @@ export default function SearchScreen() {
         </View>
       </View>
 
-      <View className="px-2 py-4">
-        <ThemedCard>
-          <View className="space-y-4">
-            <View className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <View className="space-y-2">
-                <ThemedText variant="title">検索条件</ThemedText>
-                <ThemedText>商品名で検索</ThemedText>
-                <TextInput
-                  placeholder="商品名を入力"
-                  placeholderTextColor={colors.onSurfaceVariant}
-                  value={name}
-                  onChangeText={setName}
-                  className="bg-white border-border/50"
-                  style={{
-                    backgroundColor: colors.surface,
-                    color: colors.onSurface,
-                    borderColor: colors.outlineVariant,
-                  }}
-                />
-              </View>
-              <View className="space-y-2 pt-10">
-                <ThemedText>セット名で検索</ThemedText>
-                <Picker
-                  selectedValue={series}
-                  onValueChange={(itemValue: string) => setSeries(itemValue)}
-                  style={{
-                    color: colors.onSurface,
-                    backgroundColor: colors.surface,
-                  }}
-                >
-                  <Picker.Item label="セット名を選択" value="" />
-                  {seriesList.map((s: string, i: number) => (
-                    <Picker.Item key={i} label={s} value={s} />
-                  ))}
-                </Picker>
-              </View>
-            </View>
-
-            <ThemedButton
-              className=" w-36 h-12 gap-2"
-              mode="contained"
-              onPress={handleSearch}
-            >
-              <View className="flex-row items-center space-x-2">
-                <Search className="w-4 h-4" color={colors.onPrimary} />
-                <Text
-                  className="text-base text-foreground "
-                  style={{ color: colors.onPrimary }}
-                >
-                  検索
-                </Text>
-              </View>
-            </ThemedButton>
-          </View>
-        </ThemedCard>
-      </View>
       <ScrollView
         contentContainerStyle={{
           flexGrow: 1,
@@ -158,6 +102,62 @@ export default function SearchScreen() {
           paddingBottom: 100,
         }}
       >
+        <View className="px-2 py-4">
+          <ThemedCard>
+            <View className="space-y-4">
+              <View className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <View className="space-y-2">
+                  <ThemedText variant="title">検索条件</ThemedText>
+                  <ThemedText>商品名で検索</ThemedText>
+                  <TextInput
+                    placeholder="商品名を入力"
+                    placeholderTextColor={colors.onSurfaceVariant}
+                    value={name}
+                    onChangeText={setName}
+                    className="bg-white border-border/50"
+                    style={{
+                      backgroundColor: colors.surface,
+                      color: colors.onSurface,
+                      borderColor: colors.outlineVariant,
+                    }}
+                  />
+                </View>
+                <View className="space-y-2 pt-10">
+                  <ThemedText>セット名で検索</ThemedText>
+                  <Picker
+                    selectedValue={series}
+                    onValueChange={(itemValue: string) => setSeries(itemValue)}
+                    style={{
+                      color: colors.onSurface,
+                      backgroundColor: colors.surface,
+                    }}
+                  >
+                    <Picker.Item label="セット名を選択" value="" />
+                    {seriesList.map((s: string, i: number) => (
+                      <Picker.Item key={i} label={s} value={s} />
+                    ))}
+                  </Picker>
+                </View>
+              </View>
+
+              <ThemedButton
+                className=" w-36 h-12 gap-2"
+                mode="contained"
+                onPress={handleSearch}
+              >
+                <View className="flex-row items-center space-x-2">
+                  <Search className="w-4 h-4" color={colors.onPrimary} />
+                  <Text
+                    className="text-base text-foreground "
+                    style={{ color: colors.onPrimary }}
+                  >
+                    検索
+                  </Text>
+                </View>
+              </ThemedButton>
+            </View>
+          </ThemedCard>
+        </View>
         {searched && (
           <View>
             <ThemedText>{results.length} 件ありました。</ThemedText>
