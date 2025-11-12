@@ -97,10 +97,14 @@ export default function EditPage() {
       style={{ backgroundColor: colors.background }}
     >
       <View className="flex-grow">
-        <View className="container mx-auto px-4 py-4">
+        <View className="container mx-auto px-4 py-10">
           <View className="flex items-left space-y-1">
             <Link href="/search">
-              <ArrowLeft size={24} className="text-muted-foreground" />
+              <ArrowLeft
+                size={24}
+                className="text-muted-foreground"
+                color={colors.primary}
+              />
             </Link>
             <Text
               className="text-2xl font-bold tracking-tight text-foreground"

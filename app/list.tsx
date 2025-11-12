@@ -74,13 +74,16 @@ export default function List() {
     <View style={{ flex: 1, backgroundColor: colors.background }}>
       <View className="border-b border-border/40 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
         <View className="flexgrow">
-          <View className="container mx-auto px-4 py-1.5">
+          <View className="container mx-auto px-4 py-10">
             <View className="flex items-left">
               <Link
                 href="/"
                 className="flex items-center justify-center w-10 h-10 rounded-lg hover:bg-muted transition-colors"
               >
-                <ArrowLeft className="w-5 h-5 text-muted-foreground" />
+                <ArrowLeft
+                  className="w-5 h-5 text-muted-foreground"
+                  color={colors.primary}
+                />
               </Link>
               <Text
                 className="text-2xl font-bold tracking-tight text-foreground"
@@ -101,7 +104,7 @@ export default function List() {
 
       <ScrollView className="flex-grow">
         <ThemedCard>
-          <DataTable className="p-4 border-border/40 bg-card rounded-xl">
+          <DataTable className="border-border/40 bg-card rounded-xl">
             <DataTable.Header className="flex-row border-b border-border/30 pb-2 mb-2">
               <DataTable.Title
                 className="w-[15%] font-semibold text-foreground"
