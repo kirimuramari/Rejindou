@@ -1,6 +1,6 @@
 import { darkTheme, lightTheme } from "@/src/theme/theme";
 import { Stack } from "expo-router";
-import { View, useColorScheme } from "react-native";
+import { useColorScheme } from "react-native";
 import { PaperProvider } from "react-native-paper";
 import "../global.css";
 
@@ -9,17 +9,7 @@ export default function RootLayout() {
 
   return (
     <PaperProvider theme={colorScheme === "dark" ? darkTheme : lightTheme}>
-      <View
-        style={{
-          flex: 1,
-          backgroundColor:
-            colorScheme === "dark"
-              ? darkTheme.colors.background
-              : lightTheme.colors.background,
-        }}
-      >
-        <Stack screenOptions={{ headerShown: false }} />
-      </View>
+      <Stack screenOptions={{ headerShown: false }} />
     </PaperProvider>
   );
 }

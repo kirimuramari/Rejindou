@@ -6,6 +6,7 @@ import ThemedCard from "../components/ui/ThemedCard";
 
 export default function HomeScreen() {
   const { colors, dark } = useTheme();
+
   const navigationItems = [
     {
       title: "一覧",
