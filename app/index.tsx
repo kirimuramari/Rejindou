@@ -2,7 +2,6 @@ import { Link } from "expo-router";
 import { List, Search, ShoppingCart, Tag } from "lucide-react-native";
 import { ScrollView, TouchableOpacity, View } from "react-native";
 import { Text, useTheme } from "react-native-paper";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 import ThemedCard from "../components/ui/ThemedCard";
 
 export default function HomeScreen() {
@@ -35,69 +34,67 @@ export default function HomeScreen() {
   ];
 
   return (
-    <SafeAreaProvider>
-      <ScrollView style={{ flex: 1, backgroundColor: colors.background }}>
-        <View className="px-4 py-6">
-          <Text className="text-2xl font-bold my-2">レジン道データベース</Text>
-          <Text className="text-sm text-gray-500 mb-6">
-            レジン道商品のミラーパウダーのコレクションを管理
-          </Text>
+    <ScrollView style={{ flex: 1, backgroundColor: colors.background }}>
+      <View className="px-4 py-6">
+        <Text className="text-2xl font-bold my-2">レジン道データベース</Text>
+        <Text className="text-sm text-gray-500 mb-6">
+          レジン道商品のミラーパウダーのコレクションを管理
+        </Text>
 
-          <View className="flex flex-row flex-wrap -mx-2">
-            {navigationItems.map((item, idx) => {
-              const Icon = item.icon;
-              return (
-                <View key={idx} className="w-1/2 px-2 mb-4">
-                  <Link href={item.href as any} asChild>
-                    <TouchableOpacity activeOpacity={0.8}>
-                      <ThemedCard
+        <View className="flex flex-row flex-wrap -mx-2">
+          {navigationItems.map((item, idx) => {
+            const Icon = item.icon;
+            return (
+              <View key={idx} className="w-1/2 px-2 mb-4">
+                <Link href={item.href as any} asChild>
+                  <TouchableOpacity activeOpacity={0.8}>
+                    <ThemedCard
+                      style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                        padding: 16,
+                      }}
+                    >
+                      <View
                         style={{
-                          flexDirection: "row",
+                          width: 48,
+                          height: 48,
+                          borderRadius: 12,
+                          backgroundColor:
+                            colors.secondaryContainer ??
+                            (dark ? "#2E3A59" : "#E0E7FF"),
                           alignItems: "center",
-                          padding: 16,
+                          justifyContent: "center",
+                          marginRight: 12,
                         }}
                       >
-                        <View
+                        <Icon size={24} color={colors.primary} />
+                      </View>
+                      <View className="flex-1">
+                        <Text
+                          variant="titleMedium"
                           style={{
-                            width: 48,
-                            height: 48,
-                            borderRadius: 12,
-                            backgroundColor:
-                              colors.secondaryContainer ??
-                              (dark ? "#2E3A59" : "#E0E7FF"),
-                            alignItems: "center",
-                            justifyContent: "center",
-                            marginRight: 12,
+                            color: colors.onSurface,
+                            fontWeight: "600",
                           }}
                         >
-                          <Icon size={24} color={colors.primary} />
-                        </View>
-                        <View className="flex-1">
-                          <Text
-                            variant="titleMedium"
-                            style={{
-                              color: colors.onSurface,
-                              fontWeight: "600",
-                            }}
-                          >
-                            {item.title}
-                          </Text>
-                          <Text
-                            variant="bodySmall"
-                            style={{ color: colors.onSurface }}
-                          >
-                            {item.description}
-                          </Text>
-                        </View>
-                      </ThemedCard>
-                    </TouchableOpacity>
-                  </Link>
-                </View>
-              );
-            })}
-          </View>
+                          {item.title}
+                        </Text>
+                        <Text
+                          variant="bodySmall"
+                          style={{ color: colors.onSurface }}
+                        >
+                          {item.description}
+                        </Text>
+                      </View>
+                    </ThemedCard>
+                  </TouchableOpacity>
+                </Link>
+              </View>
+            );
+          })}
         </View>
-      </ScrollView>
-    </SafeAreaProvider>
+      </View>
+    </ScrollView>
   );
 }
