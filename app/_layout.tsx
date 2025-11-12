@@ -9,7 +9,17 @@ export default function RootLayout() {
 
   return (
     <PaperProvider theme={colorScheme === "dark" ? darkTheme : lightTheme}>
-      <Stack screenOptions={{ headerShown: false }} />
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: {
+            backgroundColor:
+              colorScheme === "dark"
+                ? darkTheme.colors.background
+                : lightTheme.colors.background,
+          },
+        }}
+      />
     </PaperProvider>
   );
 }
