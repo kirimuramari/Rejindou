@@ -4,6 +4,8 @@ import { ScrollView, TouchableOpacity, View } from "react-native";
 import { Text, useTheme } from "react-native-paper";
 import ThemedCard from "../components/ui/ThemedCard";
 
+export const dynamic = "force-dynamic";
+
 export default function HomeScreen() {
   const { colors, dark } = useTheme();
 
