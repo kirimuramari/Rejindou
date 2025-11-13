@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { useTheme } from "react-native-paper";
 
 interface ThemedCardProps {
   children: React.ReactNode;
@@ -8,16 +7,12 @@ interface ThemedCardProps {
 }
 
 export default function ThemedCard({ children, style }: ThemedCardProps) {
-  const { colors } = useTheme();
-
   return (
     <View
       style={[
         styles.card,
         {
-          backgroundColor: colors.surface, // ← テーマ依存
-          borderColor: colors.border,
-          shadowColor: colors.shadow ?? "#000",
+          shadowColor: "#000",
         },
         style,
       ]}

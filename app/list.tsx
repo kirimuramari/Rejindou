@@ -1,11 +1,10 @@
-import ThemedCard from "@/components/ui/ThemedCard";
 import { supabase } from "@/lib/supabaseClient";
 import { Item } from "@/types/types";
 import { Link } from "expo-router";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import { ScrollView, View } from "react-native";
-import { Button, DataTable, Text, useTheme } from "react-native-paper";
+import { Button, Card, DataTable, Text } from "react-native-paper";
 const Page_size = 50;
 
 export default function List() {
@@ -15,8 +14,6 @@ export default function List() {
   const [page, setPage] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
   const [hasMore, setHasMore] = useState(false);
-
-  const { colors, dark } = useTheme();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -71,7 +68,7 @@ export default function List() {
     );
   }
   return (
-    <View style={{ flex: 1, backgroundColor: colors.background }}>
+    <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
       <View className="border-b border-border/40 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
         <View className="flexgrow">
           <View className="container mx-auto px-4 py-10">
@@ -80,21 +77,12 @@ export default function List() {
                 href="/"
                 className="flex items-center justify-center w-10 h-10 rounded-lg hover:bg-muted transition-colors"
               >
-                <ArrowLeft
-                  className="w-5 h-5 text-muted-foreground"
-                  color={colors.primary}
-                />
+                <ArrowLeft className="w-5 h-5 text-muted-foreground" />
               </Link>
-              <Text
-                className="text-2xl font-bold tracking-tight text-foreground"
-                style={{ color: colors.onSurface }}
-              >
+              <Text className="text-2xl font-bold tracking-tight text-foreground">
                 データ一覧
               </Text>
-              <Text
-                className="text-sm text-muted-foreground mt-1"
-                style={{ color: colors.onSurfaceVariant }}
-              >
+              <Text className="text-sm text-muted-foreground mt-1">
                 すべてのデータを表示
               </Text>
             </View>
@@ -103,31 +91,19 @@ export default function List() {
       </View>
 
       <ScrollView className="flex-grow">
-        <ThemedCard>
+        <Card className="border-border/50 bg-card">
           <DataTable className="border-border/40 bg-card rounded-xl">
             <DataTable.Header className="flex-row border-b border-border/30 pb-2 mb-2">
-              <DataTable.Title
-                className="w-[15%] font-semibold text-foreground"
-                textStyle={{ color: colors.onSurface }}
-              >
+              <DataTable.Title className="w-[15%] font-semibold text-foreground">
                 番号
               </DataTable.Title>
-              <DataTable.Title
-                className="w-[40%] font-semibold text-foreground"
-                textStyle={{ color: colors.onSurface }}
-              >
+              <DataTable.Title className="w-[40%] font-semibold text-foreground">
                 商品名
               </DataTable.Title>
-              <DataTable.Title
-                className="w-[20%] font-semibold text-foreground"
-                textStyle={{ color: colors.onSurface }}
-              >
+              <DataTable.Title className="w-[20%] font-semibold text-foreground">
                 値段
               </DataTable.Title>
-              <DataTable.Title
-                className="w-[25%] font-semibold text-foreground"
-                textStyle={{ color: colors.onSurface }}
-              >
+              <DataTable.Title className="w-[25%] font-semibold text-foreground">
                 シリーズ
               </DataTable.Title>
             </DataTable.Header>
@@ -139,42 +115,24 @@ export default function List() {
                   flexDirection: "row",
                   paddingVertical: 8,
                   paddingHorizontal: 4,
-                  backgroundColor:
-                    index % 2 === 0
-                      ? dark
-                        ? "#2C2C2C"
-                        : "#F9F9F9"
-                      : colors.surface,
                 }}
               >
-                <DataTable.Cell
-                  className="w-[15%] text-foreground"
-                  textStyle={{ color: colors.onSurface }}
-                >
+                <DataTable.Cell className="w-[15%] text-foreground">
                   {item.番号}
                 </DataTable.Cell>
-                <DataTable.Cell
-                  className="w-[40%] text-muted-foreground"
-                  textStyle={{ color: colors.onSurface }}
-                >
+                <DataTable.Cell className="w-[40%] text-muted-foreground">
                   {item.商品名}
                 </DataTable.Cell>
-                <DataTable.Cell
-                  className="w-[20%] text-muted-foreground"
-                  textStyle={{ color: colors.onSurface }}
-                >
+                <DataTable.Cell className="w-[20%] text-muted-foreground">
                   ¥{item.値段}
                 </DataTable.Cell>
-                <DataTable.Cell
-                  className="w-[25%] text-muted-foreground"
-                  textStyle={{ color: colors.onSurface }}
-                >
+                <DataTable.Cell className="w-[25%] text-muted-foreground">
                   {item.シリーズ}
                 </DataTable.Cell>
               </DataTable.Row>
             ))}
           </DataTable>
-        </ThemedCard>
+        </Card>
 
         <View className="mt-6 mb-6 flex-row justify-between items-center">
           <Button
@@ -182,15 +140,11 @@ export default function List() {
             onPress={handlePrev}
             disabled={page === 0}
             className="gap-2"
-            buttonColor={colors.primary}
           >
             <ChevronLeft className="w-4 h-4" />
             前のページ
           </Button>
-          <Text
-            className="text-sm text-muted-foreground"
-            style={{ color: colors.onSurfaceVariant }}
-          >
+          <Text className="text-sm text-muted-foreground">
             ページ {page + 1} / {Math.ceil(totalCount / Page_size)}
           </Text>
           <Button
@@ -198,7 +152,6 @@ export default function List() {
             disabled={!hasMore}
             mode="contained"
             className="gap-2"
-            buttonColor={colors.primary}
           >
             <ChevronRight className="w-4 h-4" />
             次のページ

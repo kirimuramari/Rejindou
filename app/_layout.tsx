@@ -1,12 +1,12 @@
-import { ThemeProvider } from "@/src/providers/ThemeProvider";
 import { Stack } from "expo-router";
+import { View } from "react-native";
 
 import "../global.css";
 
 export default function RootLayout() {
   return (
-    <ThemeProvider>
+    <View className="flex-1">
       <Stack screenOptions={{ headerShown: false }} />
-    </ThemeProvider>
+    </View>
   );
 }

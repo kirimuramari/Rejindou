@@ -1,6 +1,3 @@
-import { ThemedButton } from "@/components/ui/ThemedButton";
-import ThemedCard from "@/components/ui/ThemedCard";
-import { ThemedText } from "@/components/ui/ThemedText";
 import { Item } from "@/types/types";
 
 import { Picker } from "@react-native-picker/picker";
@@ -8,7 +5,7 @@ import { Link } from "expo-router";
 import { ArrowLeft, Search } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
-import { DataTable, TextInput, useTheme } from "react-native-paper";
+import { Button, Card, DataTable, TextInput } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { supabase } from "../lib/supabaseClient";
 
@@ -20,8 +17,6 @@ export default function SearchScreen() {
   const [searched, setSearched] = useState(false);
 
   const insets = useSafeAreaInsets();
-
-  const { colors, dark } = useTheme();
 
   useEffect(() => {
     const fetchSeries = async () => {
@@ -65,7 +60,7 @@ export default function SearchScreen() {
       style={{
         paddingTop: insets.top,
         paddingBottom: insets.bottom,
-        backgroundColor: colors.background,
+        backgroundColor: "#ffffffff",
       }}
     >
       <View className="border-b border-border/40 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
@@ -76,21 +71,12 @@ export default function SearchScreen() {
                 href="/"
                 className="flex items-center justify-center w-10 h-10 rounded-lg hover:bg-muted transition-colors"
               >
-                <ArrowLeft
-                  className="w-5 h-5 text-muted-foreground"
-                  color={colors.primary}
-                />
+                <ArrowLeft className="w-5 h-5 text-muted-foreground" />
               </Link>
-              <Text
-                className="text-2xl font-bold tracking-tight text-foreground"
-                style={{ color: colors.onSurface }}
-              >
+              <Text className="text-2xl font-bold tracking-tight text-foreground">
                 データ検索
               </Text>
-              <Text
-                className="text-sm text-muted-foreground mt-1"
-                style={{ color: colors.onSurfaceVariant }}
-              >
+              <Text className="text-sm text-muted-foreground mt-1">
                 商品名やセット名で検索
               </Text>
             </View>
@@ -106,34 +92,26 @@ export default function SearchScreen() {
         }}
       >
         <View className="px-2 py-4">
-          <ThemedCard>
+          <Card className="border-border/50 bg-card p-6 mb-6">
             <View className="space-y-4">
               <View className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <View className="space-y-2">
-                  <ThemedText variant="title">検索条件</ThemedText>
-                  <ThemedText>商品名で検索</ThemedText>
+                  <Text className="text-sm font-medium text-foreground">
+                    検索条件
+                  </Text>
+                  <Text>商品名で検索</Text>
                   <TextInput
                     placeholder="商品名を入力"
-                    placeholderTextColor={colors.onSurfaceVariant}
                     value={name}
                     onChangeText={setName}
                     className="bg-white border-border/50"
-                    style={{
-                      backgroundColor: colors.surface,
-                      color: colors.onSurface,
-                      borderColor: colors.outlineVariant,
-                    }}
                   />
                 </View>
                 <View className="space-y-2 pt-10">
-                  <ThemedText>セット名で検索</ThemedText>
+                  <Text>セット名で検索</Text>
                   <Picker
                     selectedValue={series}
                     onValueChange={(itemValue: string) => setSeries(itemValue)}
-                    style={{
-                      color: colors.onSurface,
-                      backgroundColor: colors.surface,
-                    }}
                   >
                     <Picker.Item label="セット名を選択" value="" />
                     {seriesList.map((s: string, i: number) => (
@@ -143,54 +121,39 @@ export default function SearchScreen() {
                 </View>
               </View>
 
-              <ThemedButton
+              <Button
                 className=" w-36 h-12 gap-2"
                 mode="contained"
                 onPress={handleSearch}
               >
                 <View className="flex-row items-center space-x-2">
-                  <Search className="w-4 h-4" color={colors.onPrimary} />
-                  <Text
-                    className="text-base text-foreground "
-                    style={{ color: colors.onPrimary }}
-                  >
-                    検索
-                  </Text>
+                  <Search className="w-4 h-4 text-white" />
+                  <Text className="text-white">検索</Text>
                 </View>
-              </ThemedButton>
+              </Button>
             </View>
-          </ThemedCard>
+          </Card>
         </View>
         {searched && (
           <View>
-            <ThemedText>{results.length} 件ありました。</ThemedText>
+            <Text className="text-lg font-medium text-foreground">
+              {results.length} 件ありました。
+            </Text>
             {results.length > 0 && (
-              <ThemedCard>
+              <Card>
                 <View className="px-4">
                   <DataTable className=" border-border/40 bg-card rounded-xl">
                     <DataTable.Header className="flex-row border-b border-border/30 pb-2 mb-2">
-                      <DataTable.Title
-                        className="font-semibold text-foreground"
-                        textStyle={{ color: colors.onSurface }}
-                      >
+                      <DataTable.Title className="font-semibold text-foreground">
                         番号
                       </DataTable.Title>
-                      <DataTable.Title
-                        className="font-semibold text-foreground"
-                        textStyle={{ color: colors.onSurface }}
-                      >
+                      <DataTable.Title className="font-semibold text-foreground">
                         商品名
                       </DataTable.Title>
-                      <DataTable.Title
-                        className="font-semibold text-foreground"
-                        textStyle={{ color: colors.onSurface }}
-                      >
+                      <DataTable.Title className="font-semibold text-foreground">
                         値段
                       </DataTable.Title>
-                      <DataTable.Title
-                        className="font-semibold text-foreground"
-                        textStyle={{ color: colors.onSurface }}
-                      >
+                      <DataTable.Title className="font-semibold text-foreground">
                         シリーズ
                       </DataTable.Title>
                     </DataTable.Header>
@@ -199,52 +162,33 @@ export default function SearchScreen() {
                         key={item.番号}
                         style={{
                           flexDirection: "row",
-                          backgroundColor:
-                            index % 2 === 0
-                              ? dark
-                                ? "#2C2C2C"
-                                : "#F9F9F9"
-                              : colors.surface,
                         }}
                       >
-                        <DataTable.Cell
-                          className="font-medium"
-                          textStyle={{ color: colors.onSurface }}
-                        >
+                        <DataTable.Cell className="font-medium">
                           {item.番号}
                         </DataTable.Cell>
-                        <DataTable.Cell
-                          className="text-muted-foreground"
-                          textStyle={{ color: colors.onSurface }}
-                        >
+                        <DataTable.Cell className="text-muted-foreground">
                           <Link
                             href={{
                               pathname: "/edit/[id]" as any,
                               params: { id: String(item.番号) },
                             }}
                             className=" text-primary hover:underline cursor-pointer "
-                            style={{ color: colors.onSurface }}
                           >
                             {item.商品名}
                           </Link>
                         </DataTable.Cell>
-                        <DataTable.Cell
-                          className="text-muted-foreground"
-                          textStyle={{ color: colors.onSurface }}
-                        >
+                        <DataTable.Cell className="text-muted-foreground">
                           ¥{item.値段}
                         </DataTable.Cell>
-                        <DataTable.Cell
-                          className="text-muted-foreground"
-                          textStyle={{ color: colors.onSurface }}
-                        >
+                        <DataTable.Cell className="text-muted-foreground">
                           {item.シリーズ}
                         </DataTable.Cell>
                       </DataTable.Row>
                     ))}
                   </DataTable>
                 </View>
-              </ThemedCard>
+              </Card>
             )}
           </View>
         )}
