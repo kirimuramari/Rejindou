@@ -20,7 +20,8 @@ export const dynamic = "force-dynamic";
 export default function HomeScreen() {
   const colorScheme = useColorScheme();
   const theme = colorScheme === "dark" ? MD3DarkTheme : MD3LightTheme;
-  const { colors, dark } = theme;
+  const { colors } = theme;
+  const dark = colorScheme === "dark";
 
   const navigationItems = [
     {
