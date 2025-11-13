@@ -1,17 +1,14 @@
-import ThemedCard from "@/components/ui/ThemedCard";
 import { supabase } from "@/lib/supabaseClient";
 import { Item } from "@/types/types";
 import { Link } from "expo-router";
 import { ArrowLeft } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
-import { DataTable, useTheme } from "react-native-paper";
+import { Card, DataTable } from "react-native-paper";
 
 export default function Purchased() {
   const [data, setData] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
-
-  const { colors, dark } = useTheme();
 
   useEffect(() => {
     (async () => {
@@ -46,7 +43,7 @@ export default function Purchased() {
     );
   }
   return (
-    <View style={{ flex: 1, backgroundColor: colors.background }}>
+    <View style={{ flex: 1, backgroundColor: "#ffffffff" }}>
       <View className="border-b border-border/40 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
         <View className="flexgrow">
           <View className="container mx-auto px-4 py-10">
@@ -55,21 +52,12 @@ export default function Purchased() {
                 href="/"
                 className="flex items-center justify-center w-10 h-10 rounded-lg hover:bg-muted transition-colors"
               >
-                <ArrowLeft
-                  className="w-5 h-5 text-muted-foreground"
-                  color={colors.primary}
-                />
+                <ArrowLeft className="w-5 h-5 text-muted-foreground" />
               </Link>
-              <Text
-                className="text-2xl font-bold tracking-tight text-foreground"
-                style={{ color: colors.onSurface }}
-              >
+              <Text className="text-2xl font-bold tracking-tight text-foreground">
                 購入済み商品一覧
               </Text>
-              <Text
-                className="text-sm text-muted-foreground mt-1"
-                style={{ color: colors.onSurfaceVariant }}
-              >
+              <Text className="text-sm text-muted-foreground mt-1">
                 購入済み商品の閲覧
               </Text>
             </View>
@@ -78,31 +66,19 @@ export default function Purchased() {
       </View>
 
       <ScrollView className="flex-grow">
-        <ThemedCard>
+        <Card className="border-border/50 bg-card">
           <DataTable className="border-borer-40 bg-card rounded-xl">
             <DataTable.Header className="flex-row border-b border-border/30 pb-2 mb-2">
-              <DataTable.Title
-                className="w-[15%] font-semibold text-foreground"
-                textStyle={{ color: colors.onSurface }}
-              >
+              <DataTable.Title className="w-[15%] font-semibold text-foreground">
                 番号
               </DataTable.Title>
-              <DataTable.Title
-                className="w-[15%] font-semibold text-foreground"
-                textStyle={{ color: colors.onSurface }}
-              >
+              <DataTable.Title className="w-[15%] font-semibold text-foreground">
                 商品名
               </DataTable.Title>
-              <DataTable.Title
-                className="w-[15%] font-semibold text-foreground"
-                textStyle={{ color: colors.onSurface }}
-              >
+              <DataTable.Title className="w-[15%] font-semibold text-foreground">
                 値段
               </DataTable.Title>
-              <DataTable.Title
-                className="w-[15%] font-semibold text-foreground"
-                textStyle={{ color: colors.onSurface }}
-              >
+              <DataTable.Title className="w-[15%] font-semibold text-foreground">
                 シリーズ
               </DataTable.Title>
             </DataTable.Header>
@@ -111,43 +87,25 @@ export default function Purchased() {
                 key={item.番号}
                 style={{
                   flexDirection: "row",
-                  backgroundColor:
-                    index % 2 === 0
-                      ? dark
-                        ? "#2C2C2C"
-                        : "#F9F9F9"
-                      : colors.surface,
                 }}
               >
-                <DataTable.Cell
-                  className="w-[15%] text-foreground"
-                  textStyle={{ color: colors.onSurface }}
-                >
+                <DataTable.Cell className="w-[15%] text-foreground">
                   {item.番号}
                 </DataTable.Cell>
-                <DataTable.Cell
-                  className="w-[40%] text-muted-foreground"
-                  textStyle={{ color: colors.onSurface }}
-                >
+                <DataTable.Cell className="w-[40%] text-muted-foreground">
                   {item.商品名}
                 </DataTable.Cell>
-                <DataTable.Cell
-                  className="w-[25%] text-muted-foreground"
-                  textStyle={{ color: colors.onSurface }}
-                >
+                <DataTable.Cell className="w-[25%] text-muted-foreground">
                   {" "}
                   ¥{item.値段}
                 </DataTable.Cell>
-                <DataTable.Cell
-                  className="w-[20%] text-muted-foreground"
-                  textStyle={{ color: colors.onSurface }}
-                >
+                <DataTable.Cell className="w-[20%] text-muted-foreground">
                   {item.シリーズ}
                 </DataTable.Cell>
               </DataTable.Row>
             ))}
           </DataTable>
-        </ThemedCard>
+        </Card>
       </ScrollView>
     </View>
   );
