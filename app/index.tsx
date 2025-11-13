@@ -1,3 +1,4 @@
+"use client";
 import { Link } from "expo-router";
 import { List, Search, ShoppingCart, Tag } from "lucide-react-native";
 import { ScrollView, TouchableOpacity, View } from "react-native";
