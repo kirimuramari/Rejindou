@@ -46,25 +46,25 @@ export default function HomeScreen() {
           {navigationItems.map((item, idx) => {
             const Icon = item.icon;
             return (
-              <View key={idx} className="w-1/2 px-2 mb-4">
+              <View key={idx} className="w-1/2 px-2 mb-4  items-center">
                 <Link href={item.href as any} asChild>
                   <TouchableOpacity activeOpacity={0.8}>
-                    <Card className=" flex-row items-center p-4 rounded-2xl bg-gray-50 border border-gray-200 shadow-sm">
+                    <Card className="flex-row items-center px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 shadow-sm max-w-[260px] w-full">
                       <View
                         style={{
-                          width: 48,
-                          height: 48,
-                          borderRadius: 12,
+                          width: 36,
+                          height: 36,
+                          borderRadius: 10,
 
                           alignItems: "center",
                           justifyContent: "center",
-                          marginRight: 12,
+                          marginRight: 10,
                         }}
                       >
-                        <Icon size={24} />
+                        <Icon size={22} />
                       </View>
                       <View className="flex-1">
-                        <Text variant="titleMedium">{item.title}</Text>
+                        <Text variant="titleSmall">{item.title}</Text>
                         <Text variant="bodySmall">{item.description}</Text>
                       </View>
                     </Card>
