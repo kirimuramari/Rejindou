@@ -1,3 +1,4 @@
+import { ListStatus } from "@/components/ListStatus";
 import { supabase } from "@/lib/supabaseClient";
 import { Item } from "@/types/types";
 import { Link } from "expo-router";
@@ -5,10 +6,10 @@ import { ArrowLeft } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { Card, DataTable } from "react-native-paper";
-
 export default function Purchased() {
   const [data, setData] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -25,25 +26,15 @@ export default function Purchased() {
       setLoading(false);
     })();
   }, []);
-  if (loading) {
-    return (
-      <View className="flex justify-center items-center min-h-screen">
-        <View
-          className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full"
-          style={{ borderTopColor: "transparent" }}
-        ></View>
-      </View>
-    );
-  }
-  if (data.length === 0) {
-    return (
-      <View style={{ padding: 20 }}>
-        <Text>データが存在しません。</Text>
-      </View>
-    );
-  }
+
   return (
     <View style={{ flex: 1, backgroundColor: "#ffffffff" }}>
+      <ListStatus
+        loading={loading}
+        error={error}
+        hasData={!!data && data.length > 0}
+        emptyMessage="データがありません。"
+      />
       <View className="border-b border-border/40 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
         <View className="flexgrow">
           <View className="container mx-auto px-4 py-10">

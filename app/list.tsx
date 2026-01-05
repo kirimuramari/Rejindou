@@ -1,3 +1,4 @@
+import { ListStatus } from "@/components/ListStatus";
 import { supabase } from "@/lib/supabaseClient";
 import { Item } from "@/types/types";
 import { Link } from "expo-router";
@@ -5,6 +6,7 @@ import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import { ScrollView, View } from "react-native";
 import { Button, Card, DataTable, Text } from "react-native-paper";
+
 const Page_size = 50;
 
 export default function List() {
@@ -50,25 +52,14 @@ export default function List() {
     if (page > 0) setPage((prev) => prev - 1);
   };
 
-  if (loading) {
-    return (
-      <View className="flex justify-center items-center min-h-screen">
-        <View
-          className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full"
-          style={{ borderTopColor: "transparent" }}
-        ></View>
-      </View>
-    );
-  }
-  if (error) {
-    return (
-      <View style={{ padding: 20 }}>
-        <Text style={{ color: "red" }}>エラー:{error}</Text>
-      </View>
-    );
-  }
   return (
     <View style={{ flex: 1, backgroundColor: "#FFFFFF" }}>
+      <ListStatus
+        loading={loading}
+        error={error}
+        hasData={!!item && item.length > 0}
+        emptyMessage="データがありません。"
+      />
       <View className="border-b border-border/40 backdrop-blur-sm bg-background/80 sticky top-0 z-50">
         <View className="flexgrow">
           <View className="container mx-auto px-4 py-10">
