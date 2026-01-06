@@ -1,15 +1,23 @@
 import { ListStatus } from "@/components/ListStatus";
+import { TableView } from "@/components/TableView";
 import { supabase } from "@/lib/supabaseClient";
 import { Item } from "@/types/types";
 import { Link } from "expo-router";
 import { ArrowLeft } from "lucide-react-native";
 import { useEffect, useState } from "react";
-import { ScrollView, Text, View } from "react-native";
-import { Card, DataTable } from "react-native-paper";
+import { Text, View } from "react-native";
+
 export default function Purchased() {
   const [data, setData] = useState<Item[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const columns = [
+    { title: "番号", key: "番号", width: "15%" },
+    { title: "商品名", key: "商品名", width: "40%" },
+    { title: "値段", key: "値段", width: "20%" },
+    { title: "シリーズ", key: "シリーズ", width: "25%" },
+  ] as const;
 
   useEffect(() => {
     (async () => {
@@ -55,49 +63,12 @@ export default function Purchased() {
           </View>
         </View>
       </View>
-
-      <ScrollView className="flex-grow">
-        <Card className="border-border/50 bg-card">
-          <DataTable className="border-borer-40 bg-card rounded-xl">
-            <DataTable.Header className="flex-row border-b border-border/30 pb-2 mb-2">
-              <DataTable.Title className="w-[15%] font-semibold text-foreground">
-                番号
-              </DataTable.Title>
-              <DataTable.Title className="w-[15%] font-semibold text-foreground">
-                商品名
-              </DataTable.Title>
-              <DataTable.Title className="w-[15%] font-semibold text-foreground">
-                値段
-              </DataTable.Title>
-              <DataTable.Title className="w-[15%] font-semibold text-foreground">
-                シリーズ
-              </DataTable.Title>
-            </DataTable.Header>
-            {data.map((item, index) => (
-              <DataTable.Row
-                key={item.番号}
-                style={{
-                  flexDirection: "row",
-                }}
-              >
-                <DataTable.Cell className="w-[15%] text-foreground">
-                  {item.番号}
-                </DataTable.Cell>
-                <DataTable.Cell className="w-[40%] text-muted-foreground">
-                  {item.商品名}
-                </DataTable.Cell>
-                <DataTable.Cell className="w-[25%] text-muted-foreground">
-                  {" "}
-                  ¥{item.値段}
-                </DataTable.Cell>
-                <DataTable.Cell className="w-[20%] text-muted-foreground">
-                  {item.シリーズ}
-                </DataTable.Cell>
-              </DataTable.Row>
-            ))}
-          </DataTable>
-        </Card>
-      </ScrollView>
+      {/* テーブル */}
+      <TableView<Item>
+        data={data}
+        columns={columns}
+        rowKey={(row) => row.番号}
+      />
     </View>
   );
 }

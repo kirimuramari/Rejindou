@@ -1,12 +1,12 @@
 import { ListStatus } from "@/components/ListStatus";
+import { TableView } from "@/components/TableView";
 import { supabase } from "@/lib/supabaseClient";
 import { Item } from "@/types/types";
 import { Link } from "expo-router";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react-native";
 import { useEffect, useState } from "react";
-import { ScrollView, View } from "react-native";
-import { Button, Card, DataTable, Text } from "react-native-paper";
-
+import { View } from "react-native";
+import { Button, Text } from "react-native-paper";
 const Page_size = 50;
 
 export default function List() {
@@ -16,6 +16,18 @@ export default function List() {
   const [page, setPage] = useState(0);
   const [totalCount, setTotalCount] = useState(0);
   const [hasMore, setHasMore] = useState(false);
+
+  const columns = [
+    { title: "番号", key: "番号", width: "15%" },
+    { title: "商品名", key: "商品名", width: "40%" },
+    {
+      title: "値段",
+      key: "値段",
+      width: "20%",
+      render: (v: number) => `¥${v}`,
+    },
+    { title: "シリーズ", key: "シリーズ", width: "25%" },
+  ] as const;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -80,75 +92,36 @@ export default function List() {
           </View>
         </View>
       </View>
-
-      <ScrollView className="flex-grow">
-        <Card className="border-border/50 bg-card">
-          <DataTable className="border-border/40 bg-card rounded-xl">
-            <DataTable.Header className="flex-row border-b border-border/30 pb-2 mb-2">
-              <DataTable.Title className="w-[15%] font-semibold text-foreground">
-                番号
-              </DataTable.Title>
-              <DataTable.Title className="w-[40%] font-semibold text-foreground">
-                商品名
-              </DataTable.Title>
-              <DataTable.Title className="w-[20%] font-semibold text-foreground">
-                値段
-              </DataTable.Title>
-              <DataTable.Title className="w-[25%] font-semibold text-foreground">
-                シリーズ
-              </DataTable.Title>
-            </DataTable.Header>
-
-            {item.map((item, index) => (
-              <DataTable.Row
-                key={item.番号}
-                style={{
-                  flexDirection: "row",
-                  paddingVertical: 8,
-                  paddingHorizontal: 4,
-                }}
-              >
-                <DataTable.Cell className="w-[15%] text-foreground">
-                  {item.番号}
-                </DataTable.Cell>
-                <DataTable.Cell className="w-[40%] text-muted-foreground">
-                  {item.商品名}
-                </DataTable.Cell>
-                <DataTable.Cell className="w-[20%] text-muted-foreground">
-                  ¥{item.値段}
-                </DataTable.Cell>
-                <DataTable.Cell className="w-[25%] text-muted-foreground">
-                  {item.シリーズ}
-                </DataTable.Cell>
-              </DataTable.Row>
-            ))}
-          </DataTable>
-        </Card>
-
-        <View className="mt-6 mb-6 flex-row justify-between items-center">
-          <Button
-            mode="contained"
-            onPress={handlePrev}
-            disabled={page === 0}
-            className="gap-2"
-          >
-            <ChevronLeft className="w-4 h-4" />
-            前のページ
-          </Button>
-          <Text className="text-sm text-muted-foreground">
-            ページ {page + 1} / {Math.ceil(totalCount / Page_size)}
-          </Text>
-          <Button
-            onPress={handleNext}
-            disabled={!hasMore}
-            mode="contained"
-            className="gap-2"
-          >
-            <ChevronRight className="w-4 h-4" />
-            次のページ
-          </Button>
-        </View>
-      </ScrollView>
+      {/* テーブル表示 */}
+      <TableView<Item>
+        data={item}
+        columns={columns}
+        rowKey={(row) => row.番号}
+      />
+      ;
+      <View className="mt-6 mb-6 flex-row justify-between items-center">
+        <Button
+          mode="contained"
+          onPress={handlePrev}
+          disabled={page === 0}
+          className="gap-2"
+        >
+          <ChevronLeft className="w-4 h-4" />
+          前のページ
+        </Button>
+        <Text className="text-sm text-muted-foreground">
+          ページ {page + 1} / {Math.ceil(totalCount / Page_size)}
+        </Text>
+        <Button
+          onPress={handleNext}
+          disabled={!hasMore}
+          mode="contained"
+          className="gap-2"
+        >
+          <ChevronRight className="w-4 h-4" />
+          次のページ
+        </Button>
+      </View>
     </View>
   );
 }
