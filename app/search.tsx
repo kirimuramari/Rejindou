@@ -1,11 +1,11 @@
-import { Item } from "@/types/types";
-
+import { TableView } from "@/components/TableView";
+import { Column, Item } from "@/types/types";
 import { Picker } from "@react-native-picker/picker";
 import { Link } from "expo-router";
 import { ArrowLeft, Search } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
-import { Button, Card, DataTable, TextInput } from "react-native-paper";
+import { Button, Card, TextInput } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { supabase } from "../lib/supabaseClient";
 
@@ -17,6 +17,31 @@ export default function SearchScreen() {
   const [searched, setSearched] = useState(false);
 
   const insets = useSafeAreaInsets();
+
+  const columns = [
+    { title: "番号", key: "番号" },
+    {
+      title: "商品名",
+      key: "商品名",
+      render: (_v: any, row: Item) => (
+        <Link
+          href={{
+            pathname: "/edit/[id]" as any,
+            params: { id: String(row.番号) },
+          }}
+          className="text-primary hover:underline cursor-pointer"
+        >
+          {row.商品名}
+        </Link>
+      ),
+    },
+    {
+      title: "値段",
+      key: "値段",
+      render: (v: number) => `¥${v}`,
+    },
+    { title: "シリーズ", key: "シリーズ" },
+  ] as const satisfies readonly Column<Item, keyof Item>[];
 
   useEffect(() => {
     const fetchSeries = async () => {
@@ -140,55 +165,13 @@ export default function SearchScreen() {
               {results.length} 件ありました。
             </Text>
             {results.length > 0 && (
-              <Card>
-                <View className="px-4">
-                  <DataTable className=" border-border/40 bg-card rounded-xl">
-                    <DataTable.Header className="flex-row border-b border-border/30 pb-2 mb-2">
-                      <DataTable.Title className="font-semibold text-foreground">
-                        番号
-                      </DataTable.Title>
-                      <DataTable.Title className="font-semibold text-foreground">
-                        商品名
-                      </DataTable.Title>
-                      <DataTable.Title className="font-semibold text-foreground">
-                        値段
-                      </DataTable.Title>
-                      <DataTable.Title className="font-semibold text-foreground">
-                        シリーズ
-                      </DataTable.Title>
-                    </DataTable.Header>
-                    {results.map((item, index) => (
-                      <DataTable.Row
-                        key={item.番号}
-                        style={{
-                          flexDirection: "row",
-                        }}
-                      >
-                        <DataTable.Cell className="font-medium">
-                          {item.番号}
-                        </DataTable.Cell>
-                        <DataTable.Cell className="text-muted-foreground">
-                          <Link
-                            href={{
-                              pathname: "/edit/[id]" as any,
-                              params: { id: String(item.番号) },
-                            }}
-                            className=" text-primary hover:underline cursor-pointer "
-                          >
-                            {item.商品名}
-                          </Link>
-                        </DataTable.Cell>
-                        <DataTable.Cell className="text-muted-foreground">
-                          ¥{item.値段}
-                        </DataTable.Cell>
-                        <DataTable.Cell className="text-muted-foreground">
-                          {item.シリーズ}
-                        </DataTable.Cell>
-                      </DataTable.Row>
-                    ))}
-                  </DataTable>
-                </View>
-              </Card>
+              // テーブル
+              <TableView<Item>
+                data={results}
+                columns={columns}
+                rowKey={(row) => row.番号}
+                scrollable={false}
+              />
             )}
           </View>
         )}
