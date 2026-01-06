@@ -98,7 +98,7 @@ export default function List() {
         columns={columns}
         rowKey={(row) => row.番号}
       />
-      ;
+
       <View className="mt-6 mb-6 flex-row justify-between items-center">
         <Button
           mode="contained"

@@ -65,7 +65,6 @@ export default function Set_Price() {
         columns={columns}
         rowKey={(row) => row.番号}
       />
-      ;
     </View>
   );
 }
