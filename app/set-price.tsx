@@ -11,10 +11,14 @@ export default function Set_Price() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const columns = [
-    { title: "番号", key: "番号", width: "15%" },
-    { title: "商品名", key: "商品名", width: "40%" },
-    { title: "値段", key: "値段", width: "20%" },
+    { title: "番号", key: "番号", width: "10%" },
     { title: "シリーズ", key: "シリーズ", width: "25%" },
+    {
+      title: "セット価格",
+      key: "セット価格",
+      width: "20%",
+      render: (v: Item[keyof Item], _row: Item) => `¥${v}`,
+    },
   ] as const;
 
   useEffect(() => {

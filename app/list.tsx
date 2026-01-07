@@ -5,8 +5,8 @@ import { Item } from "@/types/types";
 import { Link } from "expo-router";
 import { ArrowLeft, ChevronLeft, ChevronRight } from "lucide-react-native";
 import { useEffect, useState } from "react";
-import { View } from "react-native";
-import { Button, Text } from "react-native-paper";
+import { Text, View } from "react-native";
+import { Button } from "react-native-paper";
 const Page_size = 50;
 
 export default function List() {
