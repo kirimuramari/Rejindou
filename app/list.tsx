@@ -24,7 +24,7 @@ export default function List() {
       title: "値段",
       key: "値段",
       width: "20%",
-      render: (v: number) => `¥${v}`,
+      render: (v: Item[keyof Item], _row: Item) => `¥${v}`,
     },
     { title: "シリーズ", key: "シリーズ", width: "25%" },
   ] as const;

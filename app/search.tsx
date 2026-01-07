@@ -1,5 +1,6 @@
 import { TableView } from "@/components/TableView";
-import { Column, Item } from "@/types/types";
+import { supabase } from "@/lib/supabaseClient";
+import { Item } from "@/types/types";
 import { Picker } from "@react-native-picker/picker";
 import { Link } from "expo-router";
 import { ArrowLeft, Search } from "lucide-react-native";
@@ -7,7 +8,6 @@ import { useEffect, useState } from "react";
 import { ScrollView, Text, View } from "react-native";
 import { Button, Card, TextInput } from "react-native-paper";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { supabase } from "../lib/supabaseClient";
 
 export default function SearchScreen() {
   const [name, setName] = useState("");
@@ -38,10 +38,10 @@ export default function SearchScreen() {
     {
       title: "値段",
       key: "値段",
-      render: (v: number) => `¥${v}`,
+      render: (v: Item[keyof Item], _row: Item) => `¥${v}`,
     },
     { title: "シリーズ", key: "シリーズ" },
-  ] as const satisfies readonly Column<Item, keyof Item>[];
+  ] as const;
 
   useEffect(() => {
     const fetchSeries = async () => {
