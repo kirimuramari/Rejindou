@@ -28,8 +28,10 @@ export default function Purchased() {
         .order("番号", { ascending: true });
       if (error) {
         console.error("Supabaseエラー:", error);
+        setError("データの取得に失敗しました。");
       } else {
         setData(data || []);
+        setError(null);
       }
       setLoading(false);
     })();
