@@ -50,7 +50,7 @@ export default function List() {
         setItem(data ?? []);
         setHasMore((count ?? 0) > to + 1);
         setError(null);
-        console.log(count);
+        //console.log(count);
       }
       setLoading(false);
     };
