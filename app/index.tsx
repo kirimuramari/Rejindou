@@ -60,7 +60,7 @@ export default function HomeScreen() {
                   <Link href={item.href as any} asChild>
                     <TouchableOpacity activeOpacity={0.85}>
                       <Card
-                        className={`flex-row items-center px-4 py-4 rounded-xl max-w-[260px] w-full
+                        className={`flex-row items-center px-5 py-5 rounded-2xl max-w-[280px] w-full
                       ${
                         item.primary
                           ? "bg-violet-50 border-violet-300"
@@ -70,21 +70,21 @@ export default function HomeScreen() {
                       >
                         <View
                           style={{
-                            width: 38,
-                            height: 38,
+                            width: 44,
+                            height: 44,
                             borderRadius: 12,
                             backgroundColor: item.primary
                               ? "#ede9fe"
                               : "#f3f4f6",
                             alignItems: "center",
                             justifyContent: "center",
-                            marginRight: 12,
+                            marginRight: 14,
                           }}
                         >
-                          <Icon size={22} />
+                          <Icon size={24} />
                         </View>
                         <View className="flex-1">
-                          <Text variant="titleSmall">{item.title}</Text>
+                          <Text variant="titleMedium">{item.title}</Text>
                           <Text variant="bodySmall">{item.description}</Text>
                         </View>
                       </Card>
